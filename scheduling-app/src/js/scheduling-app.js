@@ -41,7 +41,7 @@ function slotSearch() {
         }
         // If no Slots matched the criteria, inform the user
         else {
-          renderSlots('<p>No Slots found for the selected query parameters.</p>');
+          renderSlots('<p>No Slots Found. Try Harder</p>');
         }
       },
 
