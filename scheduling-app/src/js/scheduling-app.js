@@ -2,11 +2,28 @@ $('#slot-search-form').on('submit', function(e) {
   e.preventDefault();
   slotSearch();
 });
+//This code is binding an event listener to the form with an ID of "slot-search-form" in a web page using jQuery, a popular JavaScript library. The on() method is used to attach an event handler function to the specified element, in this case the form with the ID "slot-search-form". The first argument to on() is the event type that we want to listen for, which in this case is the "submit" event.
+
+//When the form is submitted, the preventDefault() method is called on the event object passed as a parameter to the event listener. This prevents the form from being submitted through the default method (which is typically reloading the page).
+
+//After preventing the default form submission, the slotSearch() function is called. This is likely a custom function defined elsewhere in the code that performs some sort of search functionality specific to the page.
 
 $('#clear-slots').on('click', function(e) {
   $('#slots').html('');
   $('#slots-holder-row').hide();
 });
+
+//This code is binding an event listener to an element with an ID of "clear-slots" using jQuery, a popular JavaScript library.
+
+//The on() method is used to attach an event handler function to the specified element, in this case the element with the ID "clear-slots". The first argument to on() is the event type that we want to listen for, which in this case is the "click" event.
+
+//When the element with ID "clear-slots" is clicked, the anonymous callback function passed as the second argument to on() is executed. This function contains two lines of code:
+
+//$('#slots').html(''); - This line of code selects the element with ID "slots" and sets its HTML content to an empty string. This will clear any content that was previously in the element.
+
+//$('#slots-holder-row').hide(); - This line of code selects the element with ID "slots-holder-row" and hides it. This is likely done to remove any visual elements related to the content that was just cleared from the "slots" element.
+
+//Together, these two lines of code clear out and hide any content related to the "slots" element when the "clear-slots" element is clicked.
 
 function slotSearch() {
   clearUI();
@@ -54,7 +71,19 @@ function slotSearch() {
     );
   });
 }
+//This code defines a function called slotSearch() that performs a search for available appointments, using a FHIR server API.
 
+//The first two lines of the function are calling the clearUI() function (presumably custom) to clear any previous search results and displaying a loading element to indicate that a search is being performed.
+
+//The function then gets the input parameters for the search from a form with ID "slot-search-form" and constructs a query object named slotParams. The query object is constructed by iterating over all the form elements and adding each one to the slotParams object. Additionally, this function constructs a date range query parameter named start from two input fields on the form.
+
+//The function then uses the FHIR.js library to perform an asynchronous request to the FHIR server API to retrieve a list of Slots matching the search criteria. Upon success, the function iterates over each Slot object returned from the server and generates an HTML representation for each. These HTML representations are combined into a single string and passed to another custom function named renderSlots() which renders the HTML string into the user interface.
+
+//If no Slots are returned from the server, a message indicating that no Slots were found is rendered.
+
+//If the FHIR server request fails, the clearUI() function is called to clear any previous search results, an error message is displayed using $('#errors').html() function, and the function displays an error message to the user.
+
+//Overall, this function is performing an asynchronous search for available appointments using a FHIR server API, updating the UI to indicate progress, and rendering the results (or an error message) into the user interface.
 function slotHTML(id, type, start, end) {
   console.log('Slot: id:[' + id + '] type:[' + type + '] start:[' + start + '] end:[' + end + ']');
 
